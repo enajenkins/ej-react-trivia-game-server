@@ -99,15 +99,15 @@ router.post('/register', (req, res) => {
   }
 })
 
-// // adding the user id that is returned from the login to the url in postman (http://localhost:9000/api/users/62ff047d7e612c1cefacf841) should return the user data object
-// // adding checkAuth param should return "message": "User Not Authorized" in postman
-// router.post('/:id', checkAuth, (req, res) => {
-//   Users.findOne({ _id: req.params.id }).then(user => {
-//     res.json({ user, success: true })
-//   }).catch(er => {
-//     res.json({ success: false, message: er.message});
-//   })
-// })
+// adding the user id that is returned from the login to the url in postman (http://localhost:9000/api/users/62ff047d7e612c1cefacf841) should return the user data object
+// adding checkAuth param should return "message": "User Not Authorized" in postman to show that jwt is being verified
+router.get('/:id', checkAuth, (req, res) => {
+  Users.findOne({ _id: req.params.id }).then(user => {
+    res.json({ user, success: true })
+  }).catch(er => {
+    res.json({ success: false, message: er.message});
+  })
+})
 
 // 
 module.exports = router;
